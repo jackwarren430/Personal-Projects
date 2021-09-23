@@ -6,12 +6,12 @@ import java.lang.Math;
 
 public class VectorFrame extends JFrame{
 	private Timer t;
-	private Vector test;
 
 	public static final int WIDTH = 1300;
 	public static final int HEIGHT = 700;
 
 	private JFrame thisFrame = this;
+	private VectorComponent comp;
 
 	public VectorFrame(){
 		this.setSize(WIDTH, HEIGHT + 25);
@@ -26,8 +26,8 @@ public class VectorFrame extends JFrame{
   	}
 
   	public void addComponents(){
-  		test = new Vector(WIDTH/2, HEIGHT/2, 45);
-		this.add(test);
+  		comp = new VectorComponent();
+  		this.add(comp);
 
 		t = new Timer(10, new MovementListener());
 		this.addMouseMotionListener(new MouseMovementListener());
@@ -36,31 +36,26 @@ public class VectorFrame extends JFrame{
 
   	class MouseMovementListener implements MouseMotionListener{
   		public void mouseMoved(MouseEvent me){
-  			double rotation = Math.atan(-(me.getY()-test.getyLoc()) / (me.getX() - test.getxLoc()));
-        	
-        	if ((me.getX() - test.getxLoc()) < 0){
-        		if (-(me.getY()-test.getyLoc()) < 0){
-        			//3 quadrant
-        			rotation -= Math.PI;
-        		} else {
-        			//2 quadrant
-        			rotation += Math.PI/2;
-        		}
-        	} else {
-        		if (-(me.getY()-test.getyLoc()) < 0){
-        			//4 quadrant
-        			rotation -= 2*Math.PI;
-        		} else {
-        			//1 quadrant
-        		
-        		}
-        	}
-        	
-        	test.setRotation(rotation);
-      		test.changePoints();
+  			
+  			for (int i = 0; i < 10; i++){
+  				for (int j = 0; j < 20; j++){
+  					int x = me.getX()-comp.getxLoc(i, j);
+  					int y = me.getY() - comp.getyLoc(i, j) - 25;
+  					if (Math.sqrt(x*x + y*y) > comp.getScal(i, j)){
+  						comp.changePoints(i, j, x, y);
+  					} else {
+  						comp.changePoints2(i, j, x, y);
+  					}
+  				}
+  			}
+      		
       	}
       	public void mouseDragged(MouseEvent me){
-      		test.changePoints();
+      		/*for (int i = 0; i < 5; i++){
+  				for (int j = 0; j < 10; j++){
+  					//comp.changePoints(i, j, 1,1);
+  				}
+  			}*/
       	}
   	}
 
