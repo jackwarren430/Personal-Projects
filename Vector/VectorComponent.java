@@ -4,7 +4,7 @@ import java.awt.geom.*;
 import java.lang.Math;
 
 public class VectorComponent extends JComponent{
-	public static int density = 60;
+	public static int density = 30;
 	private Vector[][] test;
 
 	public VectorComponent(){
@@ -14,7 +14,7 @@ public class VectorComponent extends JComponent{
   			for (int j = 0; j < density*2; j++){
   				int xPos = (VectorFrame.WIDTH/(density*2)) * (j);
   				int yPos = (VectorFrame.HEIGHT/density) * (i);
-  				test[i][j] = new Vector(xPos, yPos , 20);
+  				test[i][j] = new Vector(xPos, yPos , 40);
   				
   			}
   		}
