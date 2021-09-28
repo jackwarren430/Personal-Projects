@@ -4,16 +4,17 @@ import java.awt.geom.*;
 import java.lang.Math;
 
 public class VectorComponent extends JComponent{
-	
+	public static int density = 60;
 	private Vector[][] test;
 
 	public VectorComponent(){
+		test = new Vector[density][density * 2];
 
-		test = new Vector[10][20];
-
-		for (int i = 0; i < 10; i++){
-  			for (int j = 0; j < 20; j++){
-  				test[i][j] = new Vector((VectorFrame.WIDTH/20) * (j), (VectorFrame.HEIGHT/10) * (i));
+		for (int i = 0; i < density; i++){
+  			for (int j = 0; j < density*2; j++){
+  				int xPos = (VectorFrame.WIDTH/(density*2)) * (j);
+  				int yPos = (VectorFrame.HEIGHT/density) * (i);
+  				test[i][j] = new Vector(xPos, yPos , 20);
   				
   			}
   		}
@@ -27,6 +28,10 @@ int x = me.getX()-test[i][j].getxLoc();
 
   	public int getxLoc(int i, int j){
   		return test[i][j].getxLoc();
+  	}
+
+  	public int getyPoint(int i, int j){
+  		return test[i][j].getYPoint();
   	}
 
   	public int getyLoc(int i, int j){

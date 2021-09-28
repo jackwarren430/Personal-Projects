@@ -37,8 +37,8 @@ public class VectorFrame extends JFrame{
   	class MouseMovementListener implements MouseMotionListener{
   		public void mouseMoved(MouseEvent me){
   			
-  			for (int i = 0; i < 10; i++){
-  				for (int j = 0; j < 20; j++){
+  			for (int i = 0; i < VectorComponent.density; i++){
+  				for (int j = 0; j < VectorComponent.density*2; j++){
   					int x = me.getX()-comp.getxLoc(i, j);
   					int y = me.getY() - comp.getyLoc(i, j) - 25;
   					if (Math.sqrt(x*x + y*y) > comp.getScal(i, j)){
@@ -51,12 +51,31 @@ public class VectorFrame extends JFrame{
       		
       	}
       	public void mouseDragged(MouseEvent me){
-      		/*for (int i = 0; i < 5; i++){
-  				for (int j = 0; j < 10; j++){
-  					//comp.changePoints(i, j, 1,1);
-  				}
-  			}*/
+      		
       	}
+  	}
+  	//not working
+  	public void simpleWave(){
+  		while (true){
+	  		for (int i = 0; i < VectorComponent.density; i++){
+	  			for (int j = 0; j < VectorComponent.density * 2; j++){
+					int x = comp.getxLoc(i, j) + 100;
+					int dy = 1;
+					if (comp.getyPoint(i, j) - comp.getyLoc(i, j) >= 100){
+						dy = -1;
+					} else if (comp.getyPoint(i, j) - comp.getyLoc(i, j) <= -100){
+						dy = 1;
+					} else if (comp.getyPoint(i, j) - comp.getyLoc(i, j) > 0 ){
+						dy = -1;
+					} else if (comp.getyPoint(i, j) - comp.getyLoc(i, j) < 0){
+						dy = 1;
+					}
+					int y = comp.getyPoint(i, j) + dy;
+					
+					comp.changePoints(i, j, x, y);
+	  			}
+	  		}
+  		}
   	}
 
   	class MovementListener implements ActionListener{

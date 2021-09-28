@@ -8,10 +8,10 @@ public class Vector{
 	private double scal;
 	private int xPoint, yPoint;
 
-	public Vector(int xLoc, int yLoc){
+	public Vector(int xLoc, int yLoc, int scal){
 		this.xLoc = xLoc;
 		this.yLoc = yLoc;
-		this.scal = 70;
+		this.scal = scal;
 		changePoints(1, 1);
 	}
 
@@ -27,6 +27,9 @@ public class Vector{
 		yPoint = y;
 	}
 
+	public int getYPoint(){
+		return yPoint;
+	}
 
 	public void setScal(double scal){
 		this.scal = scal;
