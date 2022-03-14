@@ -4,7 +4,7 @@ import java.awt.geom.*;
 import java.lang.Math;
 
 public class VectorComponent extends JComponent{
-	public static int density = 30;
+	public static int density = 20;
 	private Vector[][] test;
 
 	public VectorComponent(){
